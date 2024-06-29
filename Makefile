@@ -3,11 +3,11 @@ CXX         = g++
 EXEC        = ./
 CXXFLAGS    = -Wall -Wextra -std=c++17
 
-LDLIBS	    += -lpthread
+LDLIBS      += -lpthread
 
 INC         =   .
-SRCS        +=  $(INC)/main.cpp
- 
+SRCS        = $(INC)/main.cpp 
+#				 $(INC)/setNetworkConfig.cpp
 
 OBJDIR      = build
 OBJS        = $(patsubst $(INC)/%.cpp, $(OBJDIR)/%.o, $(SRCS))
@@ -21,7 +21,7 @@ $(TARGET): $(OBJS)
 
 $(OBJDIR)/%.o: $(INC)/%.cpp
 	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c -o $@ $< $(LDLIBS)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c -o $@ $<
 
 .PHONY: clean
 clean:
@@ -30,6 +30,7 @@ clean:
 .PHONY: run
 run: $(TARGET)
 	@sudo $(EXEC)$(TARGET)
+
 
 
 
@@ -109,4 +110,3 @@ run: $(TARGET)
 # 	@echo "Copy process finished."
 
 
- 
