@@ -1,0 +1,4 @@
+Fri Jul  5 15:42:03 2024
+ - Client 2: Connected to server
+Fri Jul  5 15:42:03 2024
+ - Client 2: Interacted with server
