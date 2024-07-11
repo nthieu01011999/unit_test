@@ -15,6 +15,4 @@ public:
     void display() const;
 };
 
-
-
-#endif //CLIENT_H
+#endif // CLIENT_H

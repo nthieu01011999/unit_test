@@ -10,5 +10,5 @@ std::shared_ptr<PeerConnection> Client::getPeerConnection() const {
 }
 
 void Client::display() const {
-    std::cout << "Client ID: " << id << " with PeerCOnnection\n";
+    std::cout << "Client ID: " << id << " with PeerConnection\n";
 }

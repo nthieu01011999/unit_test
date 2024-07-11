@@ -7,6 +7,7 @@ class PeerConnection {
 public:
     PeerConnection();
     void connect();
+    void enableFeature(const std::string& feature);
 };
 
-#endif //PEER_CONNECTION_H
+#endif // PEER_CONNECTION_H
