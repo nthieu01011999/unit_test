@@ -8,7 +8,7 @@
 class Client {
 private:
     std::string id;
-    std::shared_ptr<PeerConnection> peerConnection;
+    std::shared_ptr<PeerConnection> peerConnection_constructor;
 public:
     Client(const std::string& clientId);
     std::shared_ptr<PeerConnection> getPeerConnection() const;

@@ -1,4 +1,4 @@
 #!/bin/bash
 clear
-make clean && make all
+make clean && make -j4 && make run
 ./main

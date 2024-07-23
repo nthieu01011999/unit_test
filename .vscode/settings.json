@@ -64,6 +64,7 @@
         "valarray": "cpp",
         "variant": "cpp",
         "future": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "shared_mutex": "cpp"
     }
 }

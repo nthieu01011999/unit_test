@@ -2,11 +2,11 @@
 #include <iostream>
 
 Client::Client(const std::string& clientId) : id(clientId) {
-    peerConnection = std::make_shared<PeerConnection>();
+    peerConnection_constructor = std::make_shared<PeerConnection>();
 }
 
 std::shared_ptr<PeerConnection> Client::getPeerConnection() const {
-    return peerConnection;
+    return peerConnection_constructor;
 }
 
 void Client::display() const {
