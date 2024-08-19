@@ -1,37 +1,74 @@
-CC          = gcc
-CXX         = g++
-EXEC        = ./
-CXXFLAGS    = -Wall -Wextra -std=c++17
+# CC          = gcc
+# CXX         = g++
+# EXEC        = ./
+# CXXFLAGS    = -Wall -Wextra -std=c++17 -I/usr/include/openssl
 
-LDLIBS      += -lpthread
+# LDLIBS      += -lpthread -lcrypto -lssl
 
-INC         =   .
-SRCS        = $(INC)/main.cpp 
-#				 $(INC)/setNetworkConfig.cpp
+# INC         = .
+# SRCS        = $(INC)/main.cpp 
+# #             $(INC)/setNetworkConfig.cpp
 
-OBJDIR      = build
-OBJS        = $(patsubst $(INC)/%.cpp, $(OBJDIR)/%.o, $(SRCS))
+# OBJDIR      = build
+# OBJS        = $(patsubst $(INC)/%.cpp, $(OBJDIR)/%.o, $(SRCS))
 
-TARGET      = main
+# TARGET      = main
 
-INCLUDES    = -I$(INC)
+# INCLUDES    = -I$(INC)
 
+# $(TARGET): $(OBJS)
+# 	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $^ $(LDLIBS)
+
+# $(OBJDIR)/%.o: $(INC)/%.cpp
+# 	@mkdir -p $(@D)
+# 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c -o $@ $<
+
+# .PHONY: clean
+# clean:
+# 	rm -rf $(OBJDIR) $(TARGET)
+
+# .PHONY: run
+# run: $(TARGET)
+# 	@sudo $(EXEC)$(TARGET)
+
+
+# Makefile for XOR File Encryption Program
+
+# Compiler
+CC = gcc
+
+# Compiler Flags
+CFLAGS = -Wall -Wextra -pedantic -std=c11
+
+# Executable name
+TARGET = xor_encrypt
+
+# Source files
+SRCS = main.c
+
+# Object files
+OBJS = $(SRCS:.c=.o)
+
+# Default rule
+all: $(TARGET)
+
+# Rule to build the executable
 $(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $^ $(LDLIBS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
-$(OBJDIR)/%.o: $(INC)/%.cpp
-	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c -o $@ $<
+# Rule to build object files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-.PHONY: clean
+# Rule to clean up
 clean:
-	rm -rf $(OBJDIR) $(TARGET)
+	rm -f $(OBJS) $(TARGET)
 
-.PHONY: run
+# Rule to run the program
 run: $(TARGET)
-	@sudo $(EXEC)$(TARGET)
+	./$(TARGET) inputfile.txt password123
 
-
+.PHONY: all clean run
 
 
 
