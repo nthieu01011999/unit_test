@@ -9,8 +9,11 @@ CFLAGS = -Wall -Wextra -std=c11 -g
 # Executable name
 TARGET = xor_tool
 
+# Directory for object files
+OBJ_DIR = build
+
 # Object files
-OBJS = main.o xor_encrypt.o xor_decrypt.o
+OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/xor_encrypt.o $(OBJ_DIR)/xor_decrypt.o
 
 # Default rule
 all: $(TARGET)
@@ -19,21 +22,25 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
+# Rule to create the build directory
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
 # Rule to build main.o
-main.o: main.c xor_encrypt.h xor_decrypt.h
-	$(CC) $(CFLAGS) -c main.c
+$(OBJ_DIR)/main.o: main.c xor_encrypt.h xor_decrypt.h | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c main.c -o $(OBJ_DIR)/main.o
 
 # Rule to build xor_encrypt.o
-xor_encrypt.o: xor_encrypt.c xor_encrypt.h
-	$(CC) $(CFLAGS) -c xor_encrypt.c
+$(OBJ_DIR)/xor_encrypt.o: xor_encrypt.c xor_encrypt.h | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c xor_encrypt.c -o $(OBJ_DIR)/xor_encrypt.o
 
 # Rule to build xor_decrypt.o
-xor_decrypt.o: xor_decrypt.c xor_decrypt.h
-	$(CC) $(CFLAGS) -c xor_decrypt.c
+$(OBJ_DIR)/xor_decrypt.o: xor_decrypt.c xor_decrypt.h | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c xor_decrypt.c -o $(OBJ_DIR)/xor_decrypt.o
 
 # Rule to clean up generated files
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -rf $(OBJ_DIR) $(TARGET)
 
 # Rule to run the program
 run_encrypt: $(TARGET)

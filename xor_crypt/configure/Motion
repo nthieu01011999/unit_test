@@ -1,0 +1,12 @@
+{
+  "Sensitive":5,
+  "Interval":120,
+  "Duration":30,
+  "Enable":true,
+  "VideoAttribute":true,
+  "PictureAttribute":true,
+  "HumanDetectAttribute":true,
+  "GuardZoneAttribute":true,
+  "GuardZone":[
+  ]
+}

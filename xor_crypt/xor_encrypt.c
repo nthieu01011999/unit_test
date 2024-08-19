@@ -1,31 +1,12 @@
-// xor_encrypt.c
 #include <stdio.h>
 #include <string.h>
+#include "xor_encrypt.h"
 
-void make_new_name_encrypt(char *new_name, char *original_name);
-int length_of_password(char *password);
+int is_valid_password(char *password);
 int is_alpha(char c);
 int is_digit(char c);
-int is_valid_password(char *password);
+
 void perform_XOR_encrypt(char *filename, char *password);
-
-
-void make_new_name_encrypt(char *new_name, char *original_name) {
-    strcpy(new_name, "new-");
-    strcat(new_name, original_name);
-}
-
-int length_of_password(char *password) {
-    return strlen(password);
-}
-
-int is_alpha(char c) {
-    return (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z')) ? 1 : 0;
-}
-
-int is_digit(char c) {
-    return ('0' <= c && c <= '9') ? 1 : 0;
-}
 
 int is_valid_password(char *password) {
     int has_char = 0, has_digit = 0;
@@ -36,12 +17,15 @@ int is_valid_password(char *password) {
         if (is_digit(password[i])) has_digit = 1;
     }
 
-    if (len < 8)
+    if (len < 8) {
         printf("The password needs to have at least 8 characters.\n");
-    if (!has_char)
+    }
+    if (!has_char) {
         printf("The password needs to contain at least 1 alphabetical character.\n");
-    if (!has_digit)
+    }
+    if (!has_digit) {
         printf("The password needs to contain at least 1 digit.\n");
+    }
 
     return (len >= 8 && has_char && has_digit) ? 1 : 0;
 }
@@ -77,4 +61,12 @@ void perform_XOR_encrypt(char *filename, char *password) {
 
     // Close the file
     fclose(file);
+}
+
+int is_alpha(char c) {
+    return (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z')) ? 1 : 0;
+}
+
+int is_digit(char c) {
+    return ('0' <= c && c <= '9') ? 1 : 0;
 }

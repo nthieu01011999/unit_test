@@ -1,0 +1,35 @@
+
+killall -9 gaia &
+
+sleep 2
+
+rmmod rts_cam_isp
+rmmod rts_camera_jpgenc_3917
+rmmod vpu_w521mp
+rmmod rts_cam_zoom
+rmmod rts_cam_soc
+rmmod rtstream
+rmmod rts_camera_osdi
+rmmod rts_camera_osd2
+rmmod rts_cam_md
+
+rmmod rts_cam_lock
+rmmod rts_cam_mem
+
+rmmod rts_cam
+rmmod videobuf2_v4l2
+rmmod videobuf2_common
+rmmod videobuf2_memops
+rmmod rtsx_icr
+rmmod rts_snd_intern
+rmmod rts_codec
+rmmod rts_i2s
+rmmod rts_dma
+
+/etc/preinit/03_init_audio
+/etc/preinit/03_init_sdhc
+/etc/preinit/07_init_video
+
+gaia &
+
+
