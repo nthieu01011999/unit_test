@@ -1,5 +1,5 @@
 #!/bin/bash
 clear
-make clean && make -j4 && make run
+make clean && make -j4
 
 
