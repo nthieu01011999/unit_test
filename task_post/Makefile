@@ -4,6 +4,9 @@ CC = gcc
 # Compiler flags
 CFLAGS = -Wall -pthread
 
+# Linker flags (including OpenSSL libraries)
+LDFLAGS = -lssl -lcrypto
+
 # Target executable name
 TARGET = main
 
@@ -24,7 +27,7 @@ all: $(TARGET)
 
 # Rule to link the object files to create the executable
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) $(LDFLAGS)
 
 # Rule to compile source files into object files
 $(OBJDIR)/%.o: %.c $(HEADERS) | $(OBJDIR)
