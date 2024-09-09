@@ -11,23 +11,16 @@ TARGET = sound_cap
 # Source files
 SRCS = sound_cap.c
 
-# Object files (derived from the source files)
-OBJS = $(SRCS:.c=.o)
-
 # Default rule to build the target
 all: $(TARGET)
 
-# Rule to build the target executable
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) $(LIBS)
-
-# Rule to compile source files into object files
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+# Rule to build the target executable directly from the source files
+$(TARGET): $(SRCS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SRCS) $(LIBS)
 
 # Rule to clean up generated files
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f $(TARGET)
 
 # PHONY targets (not actual files)
 .PHONY: all clean
